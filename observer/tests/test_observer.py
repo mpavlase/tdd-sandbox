@@ -37,6 +37,7 @@ def test_subscribe_one(publisher, subscriber):
 
 
 def test_send_notification_to_empty_subscribers(publisher):
+    """This test should verify that no exeption is raised if there are no subscribers."""
     publisher.send_notification('tu kabel')
 
 
@@ -47,10 +48,12 @@ def test_send_notification_to_one_subscriber(publisher, subscriber, mocker):
     publisher.send_notification('tu kabel')
 
     assert subscriber.on_notification.call_count == 1
+    subscriber.on_notification.assert_called_with('tu kabel')
 
 
 def test_send_notification_to_many_subscriber(publisher, subscriber_factory, mocker):
     subscribers = []
+
     for _ in range(3):
         subscriber = subscriber_factory()
         subscribers.append(subscriber)
@@ -61,6 +64,7 @@ def test_send_notification_to_many_subscriber(publisher, subscriber_factory, moc
 
     for subscriber in subscribers:
         assert subscriber.on_notification.call_count == 1
+        subscriber.on_notification.assert_called_with('tu kabel')
 
 
 def test_unsubscribe(publisher, subscriber, mocker):
@@ -69,6 +73,7 @@ def test_unsubscribe(publisher, subscriber, mocker):
     publisher.send_notification('tu gabel')
 
     assert subscriber.on_notification.call_count == 1
+    subscriber.on_notification.assert_called_with('tu gabel')
 
     publisher.unsubscribe(subscriber)
     publisher.send_notification('tu gabel')
