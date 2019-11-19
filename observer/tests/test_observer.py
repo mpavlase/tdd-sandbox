@@ -33,6 +33,7 @@ def test_subscribe_one(publisher, subscriber):
 
     subscribers = publisher.get_subscribers()
     assert len(subscribers) == 1
+    assert subscriber in subscribers
 
 
 def test_send_notification_to_empty_subscribers(publisher):
