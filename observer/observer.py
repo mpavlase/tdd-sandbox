@@ -48,5 +48,4 @@ class Publisher(IPublisher):
 
 class Subscriber(ISubscriber):
     def on_notification(self, message: AnyStr):
-        pass
-        #print(message)
+        print(message)
