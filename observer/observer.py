@@ -4,7 +4,7 @@ from typing import Iterable, AnyStr, Set
 
 class IPublisher(ABC):
     @abstractmethod
-    def get_subscribers(self) -> Iterable:
+    def get_subscribers(self) -> Iterable['ISubscriber']:
         pass
 
     @abstractmethod
