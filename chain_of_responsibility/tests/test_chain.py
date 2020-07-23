@@ -1,4 +1,4 @@
-from chainofresponsibility import Handler
+from chain_of_responsibility.chainofresponsibility import Handler
 from pytest import raises, fixture
 
 # unix like 'pipe' example
